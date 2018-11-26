@@ -1,15 +1,17 @@
 <?php
-    $servidor = "0.0.0.0";
-    $usuario = "vaictor";
-    $db = "c9";
 
-    $conexion = mysql_connect($servidor, $usuario);
-        mysql_set_charset('utf8');
+    $usuario = "root";
+    $contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+    $servidor = "localhost";
+    $basededatos = "c9";
+
+   $conexion = mysqli_connect( $servidor, $usuario, $contrasena, $basededatos);
+       mysqli_set_charset($conexion, "utf8");  
     if (!$conexion) {
-        die("No pudo conectarse:" . mysql_error());
+        die("No pudo conectarse:" . mysqli_error());
     }
     else{
        //echo 'Conectado  satisfactoriamente al servidor <br>';
     }
-    mysql_select_db($db, $conexion) or die(mysql_error($conexion));
+    mysqli_select_db ($conexion, $basededatos) or die(mysqli_error($conexion));
 ?>
