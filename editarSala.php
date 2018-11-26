@@ -8,16 +8,17 @@ if (isset($_GET["id"])) {
 
 
     $query="select * from SALA_REMOTA WHERE id_sala_remota=$id";
-    mysql_query($query) or die(mysql_error());
+    mysqli_query($conexion, $query) or die(mysql_error($conexion));
     
-     $resultado=mysql_query($query);
-     while ($dato=mysql_fetch_array($resultado)) {
+     $resultado=mysqli_query($conexion, $query);
+     while ($dato=mysqli_fetch_array($resultado)) {
        $nom = $dato['nombre'];
        $res = $dato['responsable'];
        $tel = $dato['telefono'];
        $mail = $dato["email_responsable"];
        $ip = $dato["ip"];
        $isdn = $dato["isdn"];
+       $servicios = $dato["servicios"];
        $id = $dato["id_sala_remota"];
     
    }
@@ -86,6 +87,12 @@ if (isset($_GET["id"])) {
     <label for="ejemplo_email_1">ISDN</label>
     <input name= "isdn" type="text" class="form-control" id="juan Perez"
            placeholder="Introduce ISDN" value= "<?=$isdn;?>">
+  </div>
+  
+  <div class="form-group">
+    <label for="ejemplo_email_1">Servicios</label>
+    <input name= "ser" type="text" class="form-control" id="juan Perez"
+           placeholder="Introduce Servicios" value= "<?=$servicios;?>">
   </div>
   <button type="submit" class="btn btn-success">Enviar</button>
 </form>
